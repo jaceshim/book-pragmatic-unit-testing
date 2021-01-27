@@ -6,10 +6,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ProfileTest {
+	private Profile profile;
+	private Question question;
+	private Criteria criteria;
+
+	@BeforeEach
+	void setUp() {
+		profile = new Profile("Bull Hockey, Inc.");
+		question = new BooleanQuestion(1, "Got bonuses?");
+		criteria = new Criteria();
+	}
+
 	@Test
 	void matchAnswersFalseWhenMustMatchCriteriaNotMet() {
-		Profile profile = new Profile("Bul Hockey, Inc.");
-		Question question = new BooleanQuestion(1, "Got bonuses?");
 		Answer profileAnswer = new Answer(question, Bool.FALSE);
 		profile.add(profileAnswer);
 
@@ -25,8 +34,6 @@ class ProfileTest {
 
 	@Test
 	void matchAnswersTrueForAnyDontCareCriteria() {
-		Profile profile = new Profile("Bul Hockey, Inc.");
-		Question question = new BooleanQuestion(1, "Got milk?");
 		Answer profileAnswer = new Answer(question, Bool.FALSE);
 		profile.add(profileAnswer);
 
